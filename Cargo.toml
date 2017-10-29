@@ -1,0 +1,9 @@
+[package]
+name = "astral"
+version = "0.1.0"
+authors = ["manguluka <tali@manguluka.com>"]
+description = "Astronomical information"
+license = "MIT"
+
+[dependencies]
+chrono = "0.4"
