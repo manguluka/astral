@@ -3,7 +3,7 @@ authors = ["manguluka <tali@manguluka.com>"]
 description = "Astronomical information"
 license = "MIT"
 name = "astral"
-version = "0.1.0"
+version = "0.2.0"
 
 [dependencies]
 assert_approx_eq = "1.0.0"
