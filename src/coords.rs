@@ -1,5 +1,5 @@
 use super::*;
-#[derive(Debug, Clone, Copy, PartialEq)]
+#[derive(Serialize,Deserialize,Debug, Clone, Copy, PartialEq)]
 pub struct Location {
     pub lat: f64,
     pub lon: f64,
@@ -20,24 +20,24 @@ pub struct Coords {
     pub dist: f64,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Serialize,Deserialize,Debug, Clone)]
 pub struct CartesianCoordinates {
     pub x: f64,
     pub y: f64,
     pub z: f64,
 }
-#[derive(Debug, Clone)]
+#[derive(Serialize,Deserialize,Debug, Clone)]
 pub struct HzCoordinates {
     pub az: f64,
     pub alt: f64,
 }
-#[derive(Debug, Clone)]
+#[derive(Serialize,Deserialize,Debug, Clone)]
 pub struct EclCoordinates {
     pub lat: f64,
     pub lng: f64,
     pub dist: f64,
 }
-#[derive(Debug, Clone)]
+#[derive(Serialize,Deserialize,Debug, Clone)]
 pub struct EqCoordinates {
     pub ra: f64,
     pub dec: f64,
