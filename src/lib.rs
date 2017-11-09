@@ -1,3 +1,4 @@
+//! High level astronomical data library
 //! Initially translated from [suncalc.js](http://github.com/mourner/suncalc).
 //! Moon phase art by [Joan Stark](https://en.wikipedia.org/wiki/Joan_Stark)
 #![feature(use_extern_macros)]
@@ -38,7 +39,7 @@ mod tests {
 
     #[test]
     fn get_celestial_position_star_test() {
-        let celestial = star::get_celestial_position(JULIAN_DAY, "Polaris");
+        let celestial = star::get_celestial_position(JULIAN_DAY, "Polaris").unwrap();
         let tolerence = 2.0;
         assert_approx_eq!(37.954522, celestial.get_eq_coords().ra, tolerence);
         assert_approx_eq!(89.264108, celestial.get_eq_coords().dec, tolerence);
@@ -46,7 +47,7 @@ mod tests {
 
     #[test]
     fn get_celestial_position_planet_test() {
-        let celestial = planet::get_celestial_position(JULIAN_DAY, "Venus");
+        let celestial = planet::get_celestial_position(JULIAN_DAY, "Venus").unwrap();
         let tolerence = 0.004f64;
         let dec = -8.45970181351729;
         let ra = 204.04900114888179;

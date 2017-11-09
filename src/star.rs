@@ -25,23 +25,28 @@ pub struct StarData {
 /// ```
 /// use astral::star;
 /// let jd = 24000.0;
-/// assert_eq!(star::get_celestial_position(jd,"Polaris").julian_day,jd);
-/// assert_eq!(star::get_celestial_position(jd,"polaris").julian_day,jd);
+/// assert_eq!(star::get_celestial_position(jd,"Polaris").unwrap().julian_day,jd);
+/// assert_eq!(star::get_celestial_position(jd,"polaris").unwrap().julian_day,jd);
 /// ```
-pub fn get_celestial_position(julian: f64, name: &str) -> CelestialPosition {
-    let star_eq = star::get_data(name.to_string());
-    return CelestialPosition {
-        geo_cart: CartesianCoordinates {
-            x: star_eq.x,
-            y: star_eq.y,
-            z: star_eq.z,
+pub fn get_celestial_position(julian: f64, name: &str) -> Result<CelestialPosition, &'static str> {
+    match star::get_data(name.to_string()) {
+        Ok(star_eq) => {
+            let position =  CelestialPosition {
+                geo_cart: CartesianCoordinates {
+                    x: star_eq.x,
+                    y: star_eq.y,
+                    z: star_eq.z,
+                },
+                object_type: CelestialBodyType::Star,
+                julian_day: julian,
+            };
+            Ok(position)
         },
-        object_type: CelestialBodyType::Star,
-        julian_day: julian,
-    };
+        Err(err) => Err(err),
+    }
 }
 
-pub fn get_data(name: String) -> StarData {
+pub fn get_data(name: String) -> Result<StarData, &'static str> {
     let mut stars: Vec<StarData> = vec![];
     let star_csv_string = include_str!("../data/star_data.csv");
     let mut rdr = csv::ReaderBuilder::new().has_headers(true).from_reader(
@@ -52,8 +57,13 @@ pub fn get_data(name: String) -> StarData {
         let record: StarData = result.unwrap();
         stars.push(record.clone());
     }
-    let star = stars.into_iter().find(|ref mut item| {
+    let found_star = stars.into_iter().find(|ref mut item| {
         item.proper.to_lowercase() == name.to_lowercase()
     });
-    return star.unwrap();
+    if let Some(star) = found_star {
+        Ok(star)
+    } else{
+        Err("No star with that name found")
+    }
+    // return star.unwrap();
 }
