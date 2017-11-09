@@ -1,9 +1,11 @@
 [package]
 authors = ["manguluka <tali@manguluka.com>"]
-description = "Astronomical information"
+description = "High level astronomy library"
 license = "MIT"
 name = "astral"
-version = "0.2.0"
+version = "0.3.0"
+keywords = ["astronomy", "planets","stars"]
+categories = ["science", "algorithms",""]
 
 [dependencies]
 assert_approx_eq = "1.0.0"
