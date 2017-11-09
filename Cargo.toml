@@ -4,6 +4,8 @@ description = "High level astronomy library"
 license = "MIT"
 name = "astral"
 version = "0.3.0"
+repository = "https://github.com/manguluka/astral"
+homepage = "https://github.com/manguluka/astral"
 keywords = ["astronomy", "planets","stars"]
 categories = ["science", "algorithms",""]
 
