@@ -1,16 +1,32 @@
 use vsop87::vsop87c;
 use coords::*;
 
+/// Returns the CelestialPosition of a planet
+///
+/// # Arguments
+///
+/// * `julian` - Julian day
+/// * `planet_name` - Planet Name
+///
+/// # Example
+///
+/// ```
+/// use astral::planet;
+/// let jd = 24000.0;
+/// assert_eq!(planet::get_celestial_position(jd,"Mars").julian_day,jd);
+/// assert_eq!(planet::get_celestial_position(jd,"mars").julian_day,jd);
+/// ```
 pub fn get_celestial_position(julian: f64, planet_name: &str) -> CelestialPosition {
-    let helio_coords = match planet_name {
-        "Venus" => vsop87c::venus(julian),
-        "Earth" => vsop87c::earth(julian),
-        "Mars" => vsop87c::mars(julian),
-        "Jupiter" => vsop87c::jupiter(julian),
-        "Mercury" => vsop87c::mercury(julian),
-        "Saturn" => vsop87c::saturn(julian),
-        "Uranus" => vsop87c::uranus(julian),
-        "Neptune" => vsop87c::neptune(julian),
+
+    let helio_coords = match planet_name.to_lowercase().as_str() {
+        "venus" => vsop87c::venus(julian),
+        "earth" => vsop87c::earth(julian),
+        "mars" => vsop87c::mars(julian),
+        "jupiter" => vsop87c::jupiter(julian),
+        "mercury" => vsop87c::mercury(julian),
+        "saturn" => vsop87c::saturn(julian),
+        "uranus" => vsop87c::uranus(julian),
+        "neptune" => vsop87c::neptune(julian),
         _ => unreachable!(),
     };
     let helio_cart_coords = CartesianCoordinates {

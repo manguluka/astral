@@ -13,6 +13,21 @@ pub struct StarData {
     dec: f64,
 }
 
+/// Returns the CelestialPosition of a star
+///
+/// # Arguments
+///
+/// * `julian` - Julian day
+/// * `planet_name` - Star Name
+///
+/// # Example
+///
+/// ```
+/// use astral::star;
+/// let jd = 24000.0;
+/// assert_eq!(star::get_celestial_position(jd,"Polaris").julian_day,jd);
+/// assert_eq!(star::get_celestial_position(jd,"polaris").julian_day,jd);
+/// ```
 pub fn get_celestial_position(julian: f64, name: &str) -> CelestialPosition {
     let star_eq = star::get_data(name.to_string());
     return CelestialPosition {
@@ -37,6 +52,8 @@ pub fn get_data(name: String) -> StarData {
         let record: StarData = result.unwrap();
         stars.push(record.clone());
     }
-    let star = stars.into_iter().find(|ref mut item| item.proper == name);
+    let star = stars.into_iter().find(|ref mut item| {
+        item.proper.to_lowercase() == name.to_lowercase()
+    });
     return star.unwrap();
 }
