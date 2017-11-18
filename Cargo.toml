@@ -1,9 +1,9 @@
 [package]
 authors = ["manguluka <tali@manguluka.com>"]
-description = "High level astronomy library"
+description = "High level astronomy library."
 license = "MIT"
 name = "astral"
-version = "0.3.0"
+version = "0.3.1"
 repository = "https://github.com/manguluka/astral"
 homepage = "https://github.com/manguluka/astral"
 keywords = ["astronomy", "planets","stars"]
