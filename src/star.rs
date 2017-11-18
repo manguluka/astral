@@ -4,13 +4,13 @@ use coords::*;
 
 #[derive(Debug, Clone, Deserialize)]
 pub struct StarData {
-    proper: String,
-    x: f64,
-    y: f64,
-    z: f64,
-    dist: f64,
-    ra: f64,
-    dec: f64,
+    pub proper: String,
+    pub x: f64,
+    pub y: f64,
+    pub z: f64,
+    pub dist: f64,
+    pub ra: f64,
+    pub dec: f64,
 }
 
 /// Returns the CelestialPosition of a star
