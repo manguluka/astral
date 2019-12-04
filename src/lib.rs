@@ -1,15 +1,14 @@
 //! High level astronomical data library
 //! Initially translated from [suncalc.js](http://github.com/mourner/suncalc).
 //! Moon phase art by [Joan Stark](https://en.wikipedia.org/wiki/Joan_Stark)
-#![feature(use_extern_macros)]
 #![allow(non_snake_case)]
 #[macro_use]
 extern crate assert_approx_eq;
 #[macro_use]
 extern crate serde_derive;
 extern crate astro;
-extern crate vsop87;
 extern crate chrono;
+extern crate vsop87;
 
 use chrono::prelude::*;
 use chrono::{DateTime, NaiveDateTime};
@@ -17,9 +16,9 @@ use chrono::{DateTime, NaiveDateTime};
 pub use astro::angle;
 pub mod ascii_art;
 pub mod moon;
-pub mod sun;
 pub mod planet;
 pub mod star;
+pub mod sun;
 #[macro_use]
 pub mod util;
 pub mod coords;
@@ -28,8 +27,8 @@ pub mod coords;
 mod tests {
     use planet;
     // use sun;
-    use star;
     use coords::*;
+    use star;
     // use chrono::prelude::*;
     const JULIAN_DAY: f64 = 2458061.2743171295;
     const LOCATION: Location = Location {
